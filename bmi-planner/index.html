@@ -471,6 +471,15 @@
         line-height: 1.5;
       }
       .bmi-warning { color: #74421b; }
+      .calorie-warning {
+        margin: 10px 0 0;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background: #fff3e6;
+        color: #74421b;
+        font-size: 12px;
+        line-height: 1.5;
+      }
 
       .section-heading {
         margin: 0;
@@ -832,6 +841,7 @@
               </div>
               <p class="combined-detail">Scenario estimate combines food reduction and exercise, averaged per day. Neither value is an intake target.</p>
             </section>
+            <p class="calorie-warning" id="calorie-warning" role="status" hidden></p>
 
             <section class="breakdown-grid" aria-label="Combined scenario breakdown">
               <div class="result-tile breakdown-tile food">
@@ -922,8 +932,9 @@
           const calories = document.querySelector("#combined-difference").textContent;
           const goalPace = document.querySelector("#goal-gap-value").textContent;
           const warning = document.querySelector("#bmi-goal-warning").textContent;
+          const calorieWarning = document.querySelector("#calorie-warning").textContent;
           announcement.textContent =
-            `Scenario updated: ${dietShareInput.value}% food reduction; ${exerciseCaloriesInput.valueAsNumber} kcal per session, ${exerciseSessionsInput.value} sessions per week. After ${weeksInput.value} weeks: weight ${weight}, scenario BMI ${bmi}. Daily calorie comparison: ${calories} scenario estimate versus ${goalPace} goal-pace estimate.${warning ? ` ${warning}` : ""}`;
+            `Scenario updated: ${dietShareInput.value}% food reduction; ${exerciseCaloriesInput.valueAsNumber} kcal per session, ${exerciseSessionsInput.value} sessions per week. After ${weeksInput.value} weeks: weight ${weight}, scenario BMI ${bmi}. Daily calorie comparison: ${calories} scenario estimate versus ${goalPace} goal-pace estimate.${warning ? ` ${warning}` : ""}${calorieWarning ? ` ${calorieWarning}` : ""}`;
         }, 700);
       }
 
@@ -1125,6 +1136,8 @@
           document.querySelector("#diet-cut-detail").textContent = "Correct the highlighted measurements to see this estimate.";
           document.querySelector("#exercise-daily-result").textContent = "—";
           document.querySelector("#combined-difference").textContent = "—";
+          document.querySelector("#calorie-warning").hidden = true;
+          document.querySelector("#calorie-warning").textContent = "";
           document.querySelector("#maintenance-value").textContent = "—";
           document.querySelector("#maintenance-detail").textContent = "Correct the highlighted measurements to see this estimate.";
           return;
@@ -1217,6 +1230,18 @@
             `≈ ${Math.round(averageExerciseCalories)} kcal/day`;
           document.querySelector("#combined-difference").textContent =
             `≈ ${combinedRange} kcal/day`;
+          const calorieWarnings = [];
+          if (combinedUpper > 1000) {
+            calorieWarnings.push("the upper end of the scenario estimate");
+          }
+          if (goalGap > 1000) {
+            calorieWarnings.push("the goal-pace estimate");
+          }
+          const calorieWarning = document.querySelector("#calorie-warning");
+          calorieWarning.hidden = calorieWarnings.length === 0;
+          calorieWarning.textContent = calorieWarnings.length
+            ? `${calorieWarnings.join(" and ")} exceed${calorieWarnings.length === 1 ? "s" : ""} 1,000 kcal/day. This is above the upper end of a commonly used general planning range (about 500–1,000 kcal/day), not a personal safety cutoff. These simplified estimates can be inaccurate; consider a slower goal and talk with a qualified health professional before making significant changes.`
+            : "";
           document.querySelector("#maintenance-value").textContent =
             `≈ ${lowerCalories.toLocaleString()}–${upperCalories.toLocaleString()} kcal/day`;
           document.querySelector("#maintenance-detail").textContent =
@@ -1247,6 +1272,8 @@
             : "Not estimated for people under 18.";
           document.querySelector("#exercise-daily-result").textContent = "—";
           document.querySelector("#combined-difference").textContent = "—";
+          document.querySelector("#calorie-warning").hidden = true;
+          document.querySelector("#calorie-warning").textContent = "";
           document.querySelector("#maintenance-value").textContent = "—";
           document.querySelector("#maintenance-detail").textContent = isAdult
             ? "Enter valid measurements to see a broad estimate."
