@@ -1240,7 +1240,7 @@
           const calorieWarning = document.querySelector("#calorie-warning");
           calorieWarning.hidden = calorieWarnings.length === 0;
           calorieWarning.textContent = calorieWarnings.length
-            ? `${calorieWarnings.join(" and ")} exceed${calorieWarnings.length === 1 ? "s" : ""} 1,000 kcal/day. This is above the upper end of a commonly used general planning range (about 500–1,000 kcal/day), not a personal safety cutoff. These simplified estimates can be inaccurate; consider a slower goal and talk with a qualified health professional before making significant changes.`
+            ? `${calorieWarnings.join(" and ")} exceed${calorieWarnings.length === 1 ? "s" : ""} 1,000 kcal/day. This is above the upper end of a commonly used general planning range (about 500–1,000 kcal/day). Please consider a slower goal and talk with a qualified health professional before making significant changes.`
             : "";
           document.querySelector("#maintenance-value").textContent =
             `≈ ${lowerCalories.toLocaleString()}–${upperCalories.toLocaleString()} kcal/day`;
