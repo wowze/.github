@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ee">
+    <meta name="description" content="Explore a weight-change goal, timeframe, and illustrative food and exercise scenarios.">
+    <title>Weight-Change Scenario Sketch — Planner</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #25342c;
+        background: #f5f4ee;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        --green: #284c3c;
+        --green-soft: #e8eee6;
+        --muted: #5f665d;
+        --line: #e9e8e0;
+        --paper: #fffefa;
+        --lime: #d9e9ac;
+        --orange: #bd7452;
+        --navy: #284c3c;
+        --navy-text: #25342c;
+        --navy-muted: #5f665d;
+        --navy-line: #d6ddd4;
+        --blue-tint: #f4f5ef;
+      }
+
+      * { box-sizing: border-box; }
+
+      body { min-width: 0; margin: 0; }
+
+      button, input { font: inherit; }
+
+      .shell { width: min(100% - 48px, 1110px); margin: auto; }
+
+      header {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .12em;
+      }
+
+      .brand-mark {
+        width: 31px;
+        height: 31px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--green);
+        color: var(--lime);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 20px;
+      }
+
+      .private-note {
+        color: var(--muted);
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 10px;
+        letter-spacing: .07em;
+      }
+
+      main { padding: 57px 0 38px; }
+
+      .intro { max-width: 640px; margin: 0 auto 35px; text-align: center; }
+
+      .eyebrow {
+        margin: 0 0 11px;
+        color: #536453;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 10px;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--green);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(38px, 6vw, 55px);
+        font-weight: 500;
+        letter-spacing: -.045em;
+        line-height: 1.05;
+      }
+
+      .intro-copy {
+        max-width: 490px;
+        margin: 14px auto 0;
+        color: #5e6259;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: .94fr 1.06fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .panel {
+        padding: 25px;
+        border: 1px solid #eeede6;
+        border-radius: 18px;
+        background: var(--paper);
+        box-shadow: 0 9px 32px rgba(42, 54, 40, .035);
+      }
+
+      .panel-title {
+        margin: 0;
+        color: var(--green);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 23px;
+        font-weight: 500;
+      }
+
+      .panel-subtitle {
+        margin: 5px 0 22px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .starting-point-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 5px;
+      }
+
+      .starting-point-head .panel-title { margin: 0; }
+
+      .example-badge {
+        flex: 0 0 auto;
+        padding: 5px 8px;
+        border-radius: 999px;
+        background: var(--green-soft);
+        color: #355944;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .reset-button {
+        min-height: 38px;
+        margin: 0 0 17px;
+        padding: 7px 11px;
+        border: 1px solid #6f756c;
+        border-radius: 8px;
+        background: #fffefa;
+        color: var(--green);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .reset-button:hover { background: var(--green-soft); }
+
+      .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .field { display: flex; flex-direction: column; gap: 7px; }
+      .field.target { grid-column: 1 / -1; }
+      .field.full { grid-column: 1 / -1; }
+      .optional-inputs {
+        margin-top: 18px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .optional-inputs summary {
+        padding: 13px 0;
+        color: var(--green);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .optional-inputs summary:focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 3px;
+      }
+      .optional-inputs .field-grid { padding: 0 0 16px; }
+      .optional-inputs > .field-hint {
+        margin-bottom: 14px;
+        font-size: 11px;
+        line-height: 1.55;
+      }
+      .field-hint, .field-error {
+        margin: 0;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .field-hint { color: var(--muted); }
+      .field-error { color: #a34332; }
+      .field-error:empty { display: none; }
+      .input-wrap:has(input[aria-invalid="true"]),
+      .select-wrap:has(select[aria-invalid="true"]) {
+        border-color: #a34332;
+      }
+      input[aria-invalid="true"] { background-color: #fff8f6; }
+      .form-error {
+        min-height: 18px;
+        margin: 12px 0 0;
+        color: #a34332;
+        font-size: 11px;
+      }
+      .height-parts { display: flex; gap: 8px; }
+      .height-parts .input-wrap { flex: 1; min-width: 0; }
+      .select-wrap { position: relative; }
+      .select-wrap select {
+        width: 100%;
+        min-height: 42px;
+        padding: 0 34px 0 12px;
+        appearance: none;
+        border: 1px solid #6f756c;
+        border-radius: 10px;
+        background: #fff;
+        color: #283a30;
+        font: 12px "Segoe UI", Arial, sans-serif;
+      }
+      .select-wrap::after {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        color: #5f665d;
+        content: "⌄";
+        pointer-events: none;
+      }
+      .select-wrap select:focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 2px;
+      }
+      [hidden] { display: none !important; }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .field label, .slider-label {
+        color: #5d655d;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .input-wrap {
+        display: flex;
+        align-items: center;
+        border: 1px solid #6f756c;
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .input-wrap:focus-within {
+        border-color: #8ca28e;
+        box-shadow: 0 0 0 3px rgba(80, 115, 88, .1);
+        outline: 3px solid var(--green);
+        outline-offset: 2px;
+      }
+
+      .input-wrap input {
+        width: 100%;
+        min-width: 0;
+        padding: 11px 12px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #283a30;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+      }
+
+      .unit {
+        padding: 0 12px 0 0;
+        color: #5f665d;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 11px;
+      }
+
+      .divider { height: 1px; margin: 21px 0; background: var(--line); }
+
+      .slider-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .slider-output {
+        color: var(--green);
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 5px;
+        margin: 16px 0 7px;
+        appearance: none;
+        border-radius: 9px;
+        background: linear-gradient(90deg, #284c3c 0%, #284c3c 42%, #89968a 42%, #89968a 100%);
+        cursor: pointer;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+        appearance: none;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background: #284c3c;
+        box-shadow: 0 1px 5px #0003;
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 13px;
+        height: 13px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background: #284c3c;
+        box-shadow: 0 1px 5px #0003;
+      }
+
+      .range-ends {
+        display: flex;
+        justify-content: space-between;
+        color: #62665d;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 9px;
+      }
+
+      .activity-card {
+        margin-top: 18px;
+        padding: 15px 15px 13px;
+        border-radius: 12px;
+        background: #f4f5ef;
+      }
+
+      .exercise-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .exercise-fields .field { min-width: 0; }
+
+      .activity-summary {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-top: 8px;
+        color: var(--green);
+      }
+
+      .activity-summary strong {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+      .activity-summary span { color: #5d655d; font-size: 11px; }
+
+      .activity-caption {
+        margin: 2px 0 0;
+        color: #5f665d;
+        font-size: 10px;
+      }
+      .diet-card {
+        margin-top: 12px;
+        padding: 15px 15px 13px;
+        border: 1px solid #747a70;
+        border-radius: 12px;
+        background: #fffefa;
+      }
+
+      .diet-caption {
+        margin: 5px 0 0;
+        color: #5f665d;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      .insight {
+        min-height: 100%;
+        padding: 26px;
+        border-radius: 18px;
+        border: 1px solid var(--navy-line);
+        background: #fff;
+        color: var(--navy-text);
+      }
+
+      .insight .eyebrow { color: var(--navy); }
+      .insight .panel-title { color: var(--navy); }
+      .insight .panel-subtitle {
+        margin-bottom: 18px;
+        color: var(--navy-muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .bmi-card {
+        margin-top: 18px;
+        padding-top: 15px;
+        border-top: 1px solid var(--navy-line);
+      }
+
+      .bmi-label {
+        margin: 0;
+        color: var(--navy-text);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .bmi-values, .weight-values {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .bmi-metric { min-width: 0; }
+      .bmi-metric.scenario-metric {
+        padding: 8px;
+        border-radius: 9px;
+        background: var(--green-soft);
+      }
+      .bmi-metric.goal-metric { order: 3; }
+      .bmi-metric.scenario-metric { order: 2; }
+      .bmi-metric-label { color: var(--navy-muted); font-size: 12px; }
+
+      .bmi-number, .weight-number {
+        display: block;
+        margin-top: 3px;
+        color: var(--navy);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(24px, 2.5vw, 32px);
+        line-height: 1;
+        overflow-wrap: anywhere;
+      }
+
+      .weight-number { font-size: clamp(19px, 2.2vw, 28px); }
+
+      .weight-card {
+        margin-top: 18px;
+        padding-top: 15px;
+        border-top: 1px solid var(--navy-line);
+      }
+
+      .bmi-context, .bmi-warning {
+        margin: 9px 0 0;
+        color: var(--navy-muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .bmi-warning { color: #74421b; }
+
+      .section-heading {
+        margin: 0;
+        color: var(--navy);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .result-tile {
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .goal-grid .result-tile { min-height: 0; }
+
+      .combined-card {
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 12px;
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .combined-label {
+        margin: 0;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .combined-value {
+        margin: 7px 0 0;
+        color: #fff;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: clamp(22px, 2.5vw, 29px);
+        line-height: 1.2;
+      }
+
+      .energy-values {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        align-items: center;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .energy-metric { min-width: 0; }
+      .energy-metric.goal { padding-left: 12px; border-left: 1px solid #ffffff55; }
+      .energy-label { color: #e8eee6; font-size: 12px; line-height: 1.4; }
+      .energy-value {
+        margin: 4px 0 0;
+        color: #fff;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: clamp(17px, 2vw, 22px);
+        font-weight: 650;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+      }
+      .energy-metric.scenario .energy-value { font-size: clamp(21px, 2.4vw, 28px); }
+
+      .combined-detail {
+        margin: 10px 0 0;
+        color: #e8eee6;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .breakdown-grid { margin-top: 16px; }
+      .breakdown-tile {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 4px 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--navy-line);
+      }
+
+      .projection-tile {
+        margin-top: 16px;
+        padding: 14px;
+        border: 1px solid #d6ddd4;
+        border-radius: 10px;
+        background: var(--blue-tint);
+      }
+
+      .result-kicker {
+        margin: 0;
+        color: var(--navy-text);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .result-value {
+        margin: 0;
+        color: var(--navy);
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .result-detail {
+        margin: 4px 0 0;
+        color: var(--navy-muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .breakdown-tile .result-detail { grid-column: 1 / -1; }
+      .projection-tile .result-kicker { margin-bottom: 6px; }
+
+      .fine-print {
+        margin: 14px 1px 0;
+        color: var(--navy-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 3px;
+      }
+
+      input[type="range"]:focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 5px;
+      }
+
+      .disclaimer {
+        max-width: 820px;
+        margin: 18px auto 0;
+        padding: 12px 15px;
+        border: 1px solid #e8e8df;
+        border-radius: 11px;
+        color: #5f665d;
+        background: #f9f8f3;
+        font-size: 10px;
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      .disclaimer strong { color: #47594b; }
+
+      footer {
+        padding: 22px 0 25px;
+        color: #62665d;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 9px;
+        letter-spacing: .06em;
+        text-align: center;
+      }
+
+      @media (max-width: 720px) {
+        .shell { width: min(100% - 30px, 520px); }
+        main { padding-top: 38px; }
+        .workspace { grid-template-columns: 1fr; }
+        .panel, .insight { padding: 21px; }
+        .intro { margin-bottom: 25px; }
+      }
+
+      @media (max-width: 390px) {
+        .private-note { font-size: 8px; }
+        .panel, .insight { padding: 17px; }
+        .starting-point-head { align-items: flex-start; }
+        .starting-point-head .panel-title { font-size: 20px; }
+        .bmi-values, .weight-values { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .bmi-number { font-size: 28px; }
+        .weight-number { font-size: 23px; }
+        .result-value { font-size: 15px; }
+        .combined-value { font-size: 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div class="brand"><span class="brand-mark" aria-hidden="true">s</span> SCENARIO SKETCH</div>
+        <span class="private-note">LOCAL ONLY · RESET WHEN YOU CLOSE THIS PAGE</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">A WEIGHT-LOSS SCENARIO PLANNER</p>
+          <h1 id="page-title">Small steps. Clearer picture.</h1>
+          <p class="intro-copy">Explore how a weight-loss goal and timeframe compare with an illustrative food and exercise scenario. Estimates are not a diagnosis or personal prescription.</p>
+        </section>
+
+        <div class="workspace">
+          <section class="panel" aria-labelledby="your-numbers">
+            <div class="starting-point-head">
+              <h2 class="panel-title" id="your-numbers">Your starting point</h2>
+              <span class="example-badge">Example values</span>
+            </div>
+            <p class="panel-subtitle">Replace these sample values to explore your own scenario.</p>
+            <button class="reset-button" id="reset-examples" type="button">Reset example values</button>
+
+            <div class="field-grid">
+              <div class="field full">
+                <label for="units">Measurement units</label>
+                <div class="select-wrap">
+                  <select id="units">
+                    <option value="metric">Metric · cm / kg</option>
+                    <option value="imperial">Imperial · ft + in / lb</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="height">Height</label>
+                <div class="input-wrap" id="height-metric">
+                  <input id="height" type="number" min="100" max="230" value="175" inputmode="decimal" aria-describedby="height-unit height-error">
+                  <span class="unit" id="height-unit">cm</span>
+                </div>
+                <div class="height-parts" id="height-imperial" hidden>
+                  <div class="input-wrap">
+                    <input id="height-feet" type="number" min="3" max="7" step="1" value="5" inputmode="numeric" aria-label="Height in feet" aria-describedby="height-error">
+                    <span class="unit">ft</span>
+                  </div>
+                  <div class="input-wrap">
+                    <input id="height-inches" type="number" min="0" max="11" step="1" value="9" inputmode="numeric" aria-label="Additional height in inches" aria-describedby="height-error">
+                    <span class="unit">in</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="weight">Current weight</label>
+                <div class="input-wrap">
+                  <input id="weight" type="number" min="30" max="300" value="82" inputmode="decimal" aria-describedby="weight-unit weight-error">
+                  <span class="unit" id="weight-unit">kg</span>
+                </div>
+              </div>
+              <div class="field target">
+                <label for="target">Explore a lower goal weight</label>
+                <div class="input-wrap">
+                  <input id="target" type="number" min="30" max="300" value="74" inputmode="decimal" aria-describedby="target-unit target-error">
+                  <span class="unit" id="target-unit">kg</span>
+                </div>
+              </div>
+            </div>
+
+            <p id="height-error" class="field-error"></p>
+            <p id="weight-error" class="field-error"></p>
+            <p id="target-error" class="field-error"></p>
+            <p id="input-error" class="form-error"></p>
+
+            <details class="optional-inputs">
+              <summary>Optional estimate details</summary>
+              <p class="field-hint">For adults, the estimate applies the Mifflin–St Jeor equation using both sex-specific constants to show a broad formula range, then adjusts for the selected activity level. It uses the age-band midpoint (75 for 70+). This is not a statistical confidence interval or a personalized or clinical estimate.</p>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="age-band">Age range</label>
+                  <div class="select-wrap">
+                    <select id="age-band">
+                      <option value="24">18–29</option>
+                      <option value="40" selected>30–49</option>
+                      <option value="59">50–69</option>
+                      <option value="75">70+</option>
+                      <option value="under18">Under 18</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="daily-activity">Usual activity level</label>
+                  <div class="select-wrap">
+                    <select id="daily-activity">
+                      <option value="1.2">Mostly sitting</option>
+                      <option value="1.375" selected>Light movement</option>
+                      <option value="1.55">Moderately active</option>
+                      <option value="1.725">Very active</option>
+                    </select>
+                  </div>
+                  <p class="field-hint">Choose your typical routine, not the exercise plan below, to avoid counting planned exercise twice.</p>
+                </div>
+              </div>
+            </details>
+
+            <div class="divider"></div>
+
+            <div class="slider-head">
+              <label class="slider-label" for="weeks">Time to explore</label>
+              <span class="slider-output" id="weeks-output">24 weeks</span>
+            </div>
+            <input id="weeks" type="range" min="4" max="52" step="1" value="24" aria-label="Timeframe in weeks">
+            <div class="range-ends"><span>4 weeks</span><span>52 weeks</span></div>
+
+            <div class="activity-card">
+              <p class="slider-label">Exercise calorie estimate</p>
+              <div class="exercise-fields">
+                <div class="field">
+                  <label for="exercise-calories">Calories per session</label>
+                  <div class="input-wrap">
+                    <input id="exercise-calories" type="number" min="0" max="2000" step="10" value="150" inputmode="numeric" aria-describedby="exercise-calorie-unit exercise-hint exercise-error">
+                    <span class="unit" id="exercise-calorie-unit">kcal</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="exercise-sessions">Sessions per week</label>
+                  <div class="input-wrap">
+                    <input id="exercise-sessions" type="number" min="0" max="14" step="1" value="3" inputmode="numeric" aria-describedby="exercise-hint exercise-error">
+                    <span class="unit">sessions</span>
+                  </div>
+                </div>
+              </div>
+              <p class="field-hint" id="exercise-hint">Enter a per-session estimate from your own device or equipment. Estimates can vary and may be inaccurate.</p>
+              <div class="activity-summary">
+                <strong id="exercise-weekly-total">450</strong>
+                <span>estimated kcal per week</span>
+              </div>
+              <p class="activity-caption" id="exercise-daily-average">About 64 kcal/day averaged over 7 days.</p>
+              <p class="field-error" id="exercise-error"></p>
+            </div>
+
+            <div class="diet-card">
+              <div class="slider-head">
+                <label class="slider-label" for="diet-share">Food reduction as % of estimated maintenance</label>
+                <span class="slider-output" id="diet-share-output">0%</span>
+              </div>
+              <input id="diet-share" type="range" min="0" max="50" step="5" value="0" aria-label="Percent reduction from estimated daily maintenance calories">
+              <div class="range-ends"><span>0%</span><span>50%</span></div>
+              <p class="diet-caption">This percentage is applied to the estimated maintenance-calorie range—not to the goal/timeframe difference. Exercise calories are added separately using your own per-session estimate. This is an illustrative what-if calculation, not a guideline, diet prescription, or calorie-intake target.</p>
+            </div>
+          </section>
+
+          <section class="insight" aria-labelledby="scenario-title">
+            <p class="eyebrow">YOUR SCENARIO</p>
+            <h2 class="panel-title" id="scenario-title">A view, not a verdict.</h2>
+            <p class="panel-subtitle">Illustrative estimates update as you explore.</p>
+
+            <section class="weight-card" aria-labelledby="weight-comparison-title">
+              <h3 class="section-heading" id="weight-comparison-title">Weight comparison</h3>
+              <div class="weight-values">
+                <div class="bmi-metric">
+                  <span class="bmi-metric-label">Current</span>
+                  <span class="weight-number" id="current-weight-result">82 kg</span>
+                </div>
+                <div class="bmi-metric scenario-metric">
+                  <span class="bmi-metric-label" id="scenario-weight-label">Scenario · 24 weeks</span>
+                  <span class="weight-number" id="scenario-weight-result">80.6 kg</span>
+                </div>
+                <div class="bmi-metric goal-metric">
+                  <span class="bmi-metric-label">Goal weight</span>
+                  <span class="weight-number" id="goal-weight-result">74 kg</span>
+                </div>
+              </div>
+              <p class="result-detail" id="weight-scenario-detail">Scenario estimate uses the selected food and exercise settings; it is not a personal prediction.</p>
+            </section>
+
+            <section class="combined-card" aria-labelledby="combined-title">
+              <h3 class="combined-label" id="combined-title">Daily calorie comparison</h3>
+              <div class="energy-values">
+                <div class="energy-metric scenario">
+                  <div class="energy-label">Scenario estimate</div>
+                  <p class="energy-value" id="combined-difference">≈ 64 kcal/day</p>
+                </div>
+                <div class="energy-metric goal">
+                  <div class="energy-label">Goal-pace estimate*</div>
+                  <p class="energy-value" id="goal-gap-value">≈ 367 kcal/day</p>
+                </div>
+              </div>
+              <p class="combined-detail">Scenario estimate combines food reduction and exercise, averaged per day. Neither value is an intake target.</p>
+            </section>
+
+            <section class="breakdown-grid" aria-label="Combined scenario breakdown">
+              <div class="result-tile breakdown-tile food">
+                <p class="result-kicker">Food reduction</p>
+                <p class="result-value" id="diet-cut-value">≈ 0 kcal/day</p>
+                <p class="result-detail" id="diet-cut-detail">Illustrative estimate, not an intake target.</p>
+              </div>
+              <div class="result-tile breakdown-tile exercise">
+                <p class="result-kicker">Exercise</p>
+                <p class="result-value" id="exercise-daily-result">≈ 64 kcal/day</p>
+                <p class="result-detail">Your estimate, averaged across 7 days.</p>
+              </div>
+            </section>
+
+            <div class="result-tile projection-tile" id="maintenance-tile" hidden>
+              <p class="result-kicker">Estimated maintenance range</p>
+              <p class="result-value" id="maintenance-value">≈ 2,150–2,380 kcal/day</p>
+              <p class="result-detail" id="maintenance-detail">Broad formula estimate, not a prescribed intake.</p>
+            </div>
+
+            <section class="bmi-card" aria-labelledby="bmi-heading">
+              <h3 class="bmi-label" id="bmi-heading">BMI context · adult screening measure</h3>
+              <div class="bmi-values">
+                <div class="bmi-metric">
+                  <span class="bmi-metric-label">Current</span>
+                  <span class="bmi-number" id="bmi-value">26.8</span>
+                </div>
+                <div class="bmi-metric scenario-metric">
+                  <span class="bmi-metric-label" id="scenario-bmi-label">Scenario BMI · 24 weeks</span>
+                  <span class="bmi-number" id="scenario-bmi-value">26.3</span>
+                </div>
+                <div class="bmi-metric goal-metric">
+                  <span class="bmi-metric-label">At goal</span>
+                  <span class="bmi-number" id="goal-bmi-value">24.2</span>
+                </div>
+              </div>
+              <p class="bmi-context" id="bmi-context">BMI is a limited screening measure, not a diagnosis or a personal goal.</p>
+              <p class="bmi-context" id="scenario-bmi-detail">Based on the illustrative change over the selected timeframe; not a personal prediction.</p>
+              <p class="bmi-warning" id="bmi-goal-warning" hidden></p>
+            </section>
+            <p class="fine-print">*Daily change needed is a simplified calculation using 7,700 kcal per kg. Calorie-burn figures are estimates supplied by you from a device or equipment, not calculated or verified here. Energy needs and weight changes vary; exercise estimates may be inaccurate, and bodies adapt. The projection uses a static energy-equivalence calculation, not a dynamic body-weight model. These are not clinical predictions, prescriptions, or guaranteed outcomes.</p>
+          </section>
+        </div>
+
+        <p class="disclaimer"><strong>A note on context:</strong> BMI and calorie estimates are rough adult screening/planning tools, not a diagnosis, prescription, or guaranteed outcome. Estimates use an age band and broad formula range; real needs vary. They may not be appropriate during pregnancy or for anyone under 18. Consider professional advice before significant changes. This prototype calculates in your browser tab; it does not submit or store your entries. Closing or refreshing the page clears them.</p>
+      </main>
+
+      <p class="visually-hidden" id="scenario-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+      <footer>WEIGHT-CHANGE SCENARIO SKETCH · AN ILLUSTRATIVE PLANNER</footer>
+    </div>
+
+    <script>
+      const heightInput = document.querySelector("#height");
+      const heightFeetInput = document.querySelector("#height-feet");
+      const heightInchesInput = document.querySelector("#height-inches");
+      const weightInput = document.querySelector("#weight");
+      const targetInput = document.querySelector("#target");
+      const weeksInput = document.querySelector("#weeks");
+      const exerciseCaloriesInput = document.querySelector("#exercise-calories");
+      const exerciseSessionsInput = document.querySelector("#exercise-sessions");
+      const unitsInput = document.querySelector("#units");
+      const ageBandInput = document.querySelector("#age-band");
+      const dailyActivityInput = document.querySelector("#daily-activity");
+      const dietShareInput = document.querySelector("#diet-share");
+      let activeUnits = unitsInput.value;
+      let scenarioAnnouncementTimer;
+      let hasUserChangedScenario = false;
+
+      function scheduleScenarioAnnouncement() {
+        if (!hasUserChangedScenario) return;
+
+        window.clearTimeout(scenarioAnnouncementTimer);
+        scenarioAnnouncementTimer = window.setTimeout(() => {
+          const announcement = document.querySelector("#scenario-announcement");
+          const inputError = document.querySelector("#input-error").textContent;
+          const exerciseError = document.querySelector("#exercise-error").textContent;
+          if (ageBandInput.value === "under18") {
+            announcement.textContent = "Scenario updated. Weight-loss, BMI, and calorie estimates are not provided for people under 18.";
+            return;
+          }
+          if (inputError || exerciseError) {
+            announcement.textContent = `Some entries need attention. ${[inputError, exerciseError].filter(Boolean).join(" ")}`;
+            return;
+          }
+
+          const weight = document.querySelector("#scenario-weight-result").textContent;
+          const bmi = document.querySelector("#scenario-bmi-value").textContent;
+          const calories = document.querySelector("#combined-difference").textContent;
+          const goalPace = document.querySelector("#goal-gap-value").textContent;
+          const warning = document.querySelector("#bmi-goal-warning").textContent;
+          announcement.textContent =
+            `Scenario updated: ${dietShareInput.value}% food reduction; ${exerciseCaloriesInput.valueAsNumber} kcal per session, ${exerciseSessionsInput.value} sessions per week. After ${weeksInput.value} weeks: weight ${weight}, scenario BMI ${bmi}. Daily calorie comparison: ${calories} scenario estimate versus ${goalPace} goal-pace estimate.${warning ? ` ${warning}` : ""}`;
+        }, 700);
+      }
+
+      function switchUnits() {
+        const imperial = unitsInput.value === "imperial";
+        const wasImperial = activeUnits === "imperial";
+        if (imperial === wasImperial) return;
+
+        const heightCm = wasImperial
+          ? (Number(heightFeetInput.value) * 12 + Number(heightInchesInput.value)) * 2.54
+          : Number(heightInput.value);
+        const weightKg = wasImperial
+          ? Number(weightInput.value) / 2.2046226218
+          : Number(weightInput.value);
+        const targetKg = wasImperial
+          ? Number(targetInput.value) / 2.2046226218
+          : Number(targetInput.value);
+
+        if (Number.isFinite(heightCm) && heightCm > 0) {
+          if (imperial) {
+            const totalInches = Math.round(heightCm / 2.54);
+            heightFeetInput.value = Math.floor(totalInches / 12);
+            heightInchesInput.value = totalInches % 12;
+          } else {
+            heightInput.value = String(Math.round(heightCm * 10) / 10);
+          }
+        } else if (imperial) {
+          heightFeetInput.value = "";
+          heightInchesInput.value = "";
+        } else {
+          heightInput.value = "";
+        }
+        if (Number.isFinite(weightKg) && weightKg > 0) {
+          weightInput.value = String(Math.round(weightKg * (imperial ? 2.2046226218 : 1) * 10) / 10);
+        } else {
+          weightInput.value = "";
+        }
+        if (Number.isFinite(targetKg) && targetKg > 0) {
+          targetInput.value = String(Math.round(targetKg * (imperial ? 2.2046226218 : 1) * 10) / 10);
+        } else {
+          targetInput.value = "";
+        }
+
+        document.querySelector("#height-metric").hidden = imperial;
+        document.querySelector("#height-imperial").hidden = !imperial;
+        heightInput.disabled = imperial;
+        heightFeetInput.disabled = !imperial;
+        heightInchesInput.disabled = !imperial;
+        document.querySelector("#weight-unit").textContent = imperial ? "lb" : "kg";
+        document.querySelector("#target-unit").textContent = imperial ? "lb" : "kg";
+        weightInput.min = imperial ? "66" : "30";
+        weightInput.max = imperial ? "661" : "300";
+        targetInput.min = imperial ? "66" : "30";
+        targetInput.max = imperial ? "661" : "300";
+        activeUnits = unitsInput.value;
+        updateScenario();
+      }
+
+      function resetExamples() {
+        unitsInput.value = "metric";
+        activeUnits = "metric";
+        heightInput.value = "175";
+        heightFeetInput.value = "5";
+        heightInchesInput.value = "9";
+        weightInput.value = "82";
+        targetInput.value = "74";
+        weeksInput.value = "24";
+        exerciseCaloriesInput.value = "150";
+        exerciseSessionsInput.value = "3";
+        dietShareInput.value = "0";
+        ageBandInput.value = "40";
+        dailyActivityInput.value = "1.375";
+        document.querySelector(".optional-inputs").open = false;
+        document.querySelector("#height-metric").hidden = false;
+        document.querySelector("#height-imperial").hidden = true;
+        heightInput.disabled = false;
+        heightFeetInput.disabled = true;
+        heightInchesInput.disabled = true;
+        document.querySelector("#weight-unit").textContent = "kg";
+        document.querySelector("#target-unit").textContent = "kg";
+        weightInput.min = "30";
+        weightInput.max = "300";
+        targetInput.min = "30";
+        targetInput.max = "300";
+        for (const input of [heightInput, heightFeetInput, heightInchesInput, weightInput, targetInput]) {
+          input.removeAttribute("aria-invalid");
+        }
+        updateRangeFill(weeksInput);
+        updateRangeFill(dietShareInput);
+        updateScenario();
+      }
+
+      function updateRangeFill(input) {
+        const progress = ((input.value - input.min) / (input.max - input.min)) * 100;
+        input.style.background = `linear-gradient(90deg, #284c3c 0%, #284c3c ${progress}%, #89968a ${progress}%, #89968a 100%)`;
+      }
+
+      function setInputError(inputs, errorElement, message) {
+        errorElement.textContent = message;
+        for (const input of inputs) {
+          if (input.disabled || !message) {
+            input.removeAttribute("aria-invalid");
+          } else {
+            input.setAttribute("aria-invalid", "true");
+          }
+        }
+      }
+
+      function updateScenario() {
+        const imperial = unitsInput.value === "imperial";
+        const heightCm = imperial
+          ? (heightFeetInput.valueAsNumber * 12 + heightInchesInput.valueAsNumber) * 2.54
+          : heightInput.valueAsNumber;
+        const height = heightCm / 100;
+        const weightValue = weightInput.valueAsNumber;
+        const targetValue = targetInput.valueAsNumber;
+        const weight = imperial ? weightValue / 2.2046226218 : weightValue;
+        const target = imperial ? targetValue / 2.2046226218 : targetValue;
+        const weeks = Number(weeksInput.value);
+        const isAdult = ageBandInput.value !== "under18";
+        const heightValid = Number.isFinite(heightCm) && heightCm >= 100 && heightCm <= 230 &&
+          (!imperial || (
+            Number.isInteger(heightFeetInput.valueAsNumber) &&
+            Number.isInteger(heightInchesInput.valueAsNumber) &&
+            heightFeetInput.valueAsNumber >= 3 &&
+            heightInchesInput.valueAsNumber >= 0 &&
+            heightInchesInput.valueAsNumber <= 11
+          ));
+        const minWeight = imperial ? 66 : 30;
+        const maxWeight = imperial ? 661 : 300;
+        const weightValid = Number.isFinite(weightValue) && weightValue >= minWeight && weightValue <= maxWeight;
+        const targetWithinRange = Number.isFinite(targetValue) &&
+          targetValue >= minWeight && targetValue <= maxWeight;
+        const targetValid = targetWithinRange && (!weightValid || target < weight);
+        const heightError = heightValid
+          ? ""
+          : imperial
+            ? "Enter a height from 3 ft to 7 ft 6 in."
+            : "Enter a height from 100 to 230 cm.";
+        const weightError = weightValid
+          ? ""
+          : `Enter a current weight from ${minWeight} to ${maxWeight} ${imperial ? "lb" : "kg"}.`;
+        const targetError = !targetWithinRange
+          ? `Enter a goal weight from ${minWeight} to ${maxWeight} ${imperial ? "lb" : "kg"}.`
+          : weightValid && target >= weight
+            ? "For this weight-loss planner, enter a goal weight below your current weight."
+            : "";
+        setInputError(
+          imperial ? [heightFeetInput, heightInchesInput] : [heightInput],
+          document.querySelector("#height-error"),
+          heightError,
+        );
+        setInputError([weightInput], document.querySelector("#weight-error"), weightError);
+        setInputError([targetInput], document.querySelector("#target-error"), targetError);
+        document.querySelector("#input-error").textContent =
+          [heightError, weightError, targetError].filter(Boolean).join(" ");
+
+        document.querySelector("#weeks-output").textContent = `${weeks} weeks`;
+        document.querySelector("#diet-share-output").textContent = `${dietShareInput.value}%`;
+        updateRangeFill(dietShareInput);
+        const caloriesPerSession = exerciseCaloriesInput.valueAsNumber;
+        const sessionsPerWeek = exerciseSessionsInput.valueAsNumber;
+        const exerciseValid = Number.isFinite(caloriesPerSession) &&
+          Number.isFinite(sessionsPerWeek) &&
+          caloriesPerSession >= 0 && caloriesPerSession <= 2000 &&
+          Number.isInteger(sessionsPerWeek) && sessionsPerWeek >= 0 && sessionsPerWeek <= 14;
+        const exerciseError = exerciseValid
+          ? ""
+          : "Enter 0–2,000 kcal per session and 0–14 sessions per week.";
+        document.querySelector("#exercise-error").textContent = exerciseError;
+        for (const input of [exerciseCaloriesInput, exerciseSessionsInput]) {
+          if (exerciseError) input.setAttribute("aria-invalid", "true");
+          else input.removeAttribute("aria-invalid");
+        }
+        const weeklyExerciseCalories = exerciseValid ? caloriesPerSession * sessionsPerWeek : 0;
+        const averageExerciseCalories = weeklyExerciseCalories / 7;
+        document.querySelector("#exercise-weekly-total").textContent =
+          Math.round(weeklyExerciseCalories).toLocaleString();
+        document.querySelector("#exercise-daily-average").textContent = exerciseValid
+          ? `About ${Math.round(averageExerciseCalories)} kcal/day averaged over 7 days.`
+          : "Check the exercise entries to see the estimate.";
+
+        if (!heightValid || !weightValid || !targetValid || !exerciseValid) {
+          document.querySelector("#current-weight-result").textContent = "—";
+          document.querySelector("#goal-weight-result").textContent = "—";
+          document.querySelector("#scenario-weight-result").textContent = "—";
+          document.querySelector("#scenario-weight-label").textContent = `Scenario · ${weeks} weeks`;
+          document.querySelector("#weight-scenario-detail").textContent = "Available when the scenario inputs are valid.";
+          document.querySelector("#bmi-value").textContent = "—";
+          document.querySelector("#goal-bmi-value").textContent = "—";
+          document.querySelector("#scenario-bmi-value").textContent = "—";
+          document.querySelector("#scenario-bmi-label").textContent = `Scenario BMI · ${weeks} weeks`;
+          document.querySelector("#bmi-context").textContent = "Correct the highlighted measurements to see this scenario.";
+          document.querySelector("#scenario-bmi-detail").textContent = "Available when the scenario inputs are valid.";
+          document.querySelector("#bmi-goal-warning").hidden = true;
+          document.querySelector("#bmi-goal-warning").textContent = "";
+          document.querySelector("#goal-gap-value").textContent = "—";
+          document.querySelector("#diet-cut-value").textContent = "—";
+          document.querySelector("#diet-cut-detail").textContent = "Correct the highlighted measurements to see this estimate.";
+          document.querySelector("#exercise-daily-result").textContent = "—";
+          document.querySelector("#combined-difference").textContent = "—";
+          document.querySelector("#maintenance-value").textContent = "—";
+          document.querySelector("#maintenance-detail").textContent = "Correct the highlighted measurements to see this estimate.";
+          return;
+        }
+
+        if (isAdult) {
+          const goalGap = ((weight - target) * 7700) / (weeks * 7);
+          const currentBmi = weight / (height * height);
+          const targetBmi = target / (height * height);
+          const displayUnit = imperial ? "lb" : "kg";
+          const basalBase = 10 * weight + 6.25 * heightCm - 5 * Number(ageBandInput.value);
+          const activityFactor = Number(dailyActivityInput.value);
+          const lowerCalories = Math.max(0, Math.round((basalBase - 161) * activityFactor / 10) * 10);
+          const upperCalories = Math.max(0, Math.round((basalBase + 5) * activityFactor / 10) * 10);
+          const dietShare = Number(dietShareInput.value) / 100;
+          const dietCutLower = Math.round(lowerCalories * dietShare);
+          const dietCutUpper = Math.round(upperCalories * dietShare);
+          const dietReduction = dietShare === 0
+            ? "≈ 0 kcal/day"
+            : `≈ ${dietCutLower.toLocaleString()}–${dietCutUpper.toLocaleString()} kcal/day`;
+          const combinedLower = dietCutLower + averageExerciseCalories;
+          const combinedUpper = dietCutUpper + averageExerciseCalories;
+          const projectedLowerKg = (combinedLower * weeks * 7) / 7700;
+          const projectedUpperKg = (combinedUpper * weeks * 7) / 7700;
+          const unitFactor = imperial ? 2.2046226218 : 1;
+          const combinedLowerRounded = Math.round(combinedLower).toLocaleString();
+          const combinedUpperRounded = Math.round(combinedUpper).toLocaleString();
+          const combinedRange = combinedLowerRounded === combinedUpperRounded
+            ? combinedLowerRounded
+            : `${combinedLowerRounded}–${combinedUpperRounded}`;
+          document.querySelector("#current-weight-result").textContent =
+            `${weightValue.toFixed(1)} ${displayUnit}`;
+          document.querySelector("#goal-weight-result").textContent =
+            `${targetValue.toFixed(1)} ${displayUnit}`;
+          document.querySelector("#scenario-weight-label").textContent = `Scenario · ${weeks} weeks`;
+          const scenarioWeightValue = document.querySelector("#scenario-weight-result");
+          if (projectedUpperKg >= weight) {
+            scenarioWeightValue.textContent = "—";
+            document.querySelector("#weight-scenario-detail").textContent =
+              "Not meaningful: this simplified scenario exceeds current body weight.";
+          } else {
+            const scenarioWeightLower = (weight - projectedUpperKg) * unitFactor;
+            const scenarioWeightUpper = (weight - projectedLowerKg) * unitFactor;
+            const scenarioWeightLowerRounded = scenarioWeightLower.toFixed(1);
+            const scenarioWeightUpperRounded = scenarioWeightUpper.toFixed(1);
+            scenarioWeightValue.textContent =
+              scenarioWeightLowerRounded === scenarioWeightUpperRounded
+                ? `${scenarioWeightLowerRounded} ${displayUnit}`
+                : `${scenarioWeightLowerRounded}–${scenarioWeightUpperRounded} ${displayUnit}`;
+            document.querySelector("#weight-scenario-detail").textContent =
+              "Based on your selected food and exercise settings; simplified illustration, not a personal prediction.";
+          }
+          document.querySelector("#bmi-value").textContent = currentBmi.toFixed(1);
+          document.querySelector("#goal-bmi-value").textContent = targetBmi.toFixed(1);
+          document.querySelector("#scenario-bmi-label").textContent = `Scenario BMI · ${weeks} weeks`;
+          const scenarioBmiValue = document.querySelector("#scenario-bmi-value");
+          const bmiWarnings = [];
+          if (targetBmi < 18.5) {
+            bmiWarnings.push("The selected goal BMI is below the usual adult screening range (18.5). BMI alone cannot assess health.");
+          }
+          if (projectedUpperKg >= weight) {
+            scenarioBmiValue.textContent = "—";
+            document.querySelector("#scenario-bmi-detail").textContent =
+              "Not meaningful: this simplified scenario exceeds current body weight.";
+          } else {
+            const scenarioBmiLower = (weight - projectedUpperKg) / (height * height);
+            const scenarioBmiUpper = (weight - projectedLowerKg) / (height * height);
+            const scenarioBmiLowerRounded = scenarioBmiLower.toFixed(1);
+            const scenarioBmiUpperRounded = scenarioBmiUpper.toFixed(1);
+            scenarioBmiValue.textContent = scenarioBmiLowerRounded === scenarioBmiUpperRounded
+              ? scenarioBmiLowerRounded
+              : `${scenarioBmiLowerRounded}–${scenarioBmiUpperRounded}`;
+            document.querySelector("#scenario-bmi-detail").textContent =
+              "Based on the illustrative change over the selected timeframe; not a personal prediction.";
+            if (scenarioBmiLower < 18.5) {
+              bmiWarnings.push("The illustrative scenario BMI range extends below the usual adult screening range (18.5). This is not a recommendation.");
+            }
+          }
+          document.querySelector("#bmi-context").textContent =
+            "BMI is a limited screening measure, not a diagnosis or a personal goal.";
+          const goalBmiWarning = document.querySelector("#bmi-goal-warning");
+          goalBmiWarning.hidden = bmiWarnings.length === 0;
+          goalBmiWarning.textContent = bmiWarnings.join(" ");
+          document.querySelector("#goal-gap-value").textContent =
+            `≈ ${Math.round(goalGap).toLocaleString()} kcal/day`;
+          document.querySelector("#diet-cut-value").textContent = dietReduction;
+          document.querySelector("#diet-cut-detail").textContent =
+            `${dietShareInput.value}% of estimated maintenance (${lowerCalories.toLocaleString()}–${upperCalories.toLocaleString()} kcal/day), based on age ${ageBandInput.selectedOptions[0].text} and usual activity. Not a recommended intake target.`;
+          document.querySelector("#exercise-daily-result").textContent =
+            `≈ ${Math.round(averageExerciseCalories)} kcal/day`;
+          document.querySelector("#combined-difference").textContent =
+            `≈ ${combinedRange} kcal/day`;
+          document.querySelector("#maintenance-value").textContent =
+            `≈ ${lowerCalories.toLocaleString()}–${upperCalories.toLocaleString()} kcal/day`;
+          document.querySelector("#maintenance-detail").textContent =
+            `Broad equation range using the age ${ageBandInput.selectedOptions[0].text} midpoint and selected activity level. Not a prescribed intake.`;
+
+        } else {
+          document.querySelector("#current-weight-result").textContent = "—";
+          document.querySelector("#goal-weight-result").textContent = "—";
+          document.querySelector("#scenario-weight-result").textContent = "—";
+          document.querySelector("#scenario-weight-label").textContent = `Scenario · ${weeks} weeks`;
+          document.querySelector("#weight-scenario-detail").textContent = "Weight-loss scenarios are not estimated for people under 18.";
+          document.querySelector("#bmi-value").textContent = "—";
+          document.querySelector("#goal-bmi-value").textContent = "—";
+          document.querySelector("#scenario-bmi-value").textContent = "—";
+          document.querySelector("#scenario-bmi-label").textContent = `Scenario BMI · ${weeks} weeks`;
+          document.querySelector("#bmi-goal-warning").hidden = true;
+          document.querySelector("#bmi-goal-warning").textContent = "";
+          document.querySelector("#bmi-context").textContent = isAdult
+            ? "Enter positive measurements to explore this scenario."
+            : "Adult BMI and calorie estimates are not used for people under 18. Please ask a qualified health professional.";
+          document.querySelector("#scenario-bmi-detail").textContent = isAdult
+            ? "Available when the scenario inputs are valid."
+            : "Not estimated for people under 18.";
+          document.querySelector("#goal-gap-value").textContent = "—";
+          document.querySelector("#diet-cut-value").textContent = "—";
+          document.querySelector("#diet-cut-detail").textContent = isAdult
+            ? "Enter valid measurements to see an illustrative scenario."
+            : "Not estimated for people under 18.";
+          document.querySelector("#exercise-daily-result").textContent = "—";
+          document.querySelector("#combined-difference").textContent = "—";
+          document.querySelector("#maintenance-value").textContent = "—";
+          document.querySelector("#maintenance-detail").textContent = isAdult
+            ? "Enter valid measurements to see a broad estimate."
+            : "Not estimated for people under 18.";
+        }
+        scheduleScenarioAnnouncement();
+      }
+
+      unitsInput.addEventListener("change", () => {
+        hasUserChangedScenario = true;
+        switchUnits();
+      });
+      document.querySelector("#reset-examples").addEventListener("click", () => {
+        hasUserChangedScenario = true;
+        resetExamples();
+      });
+      ageBandInput.addEventListener("change", () => {
+        hasUserChangedScenario = true;
+        updateScenario();
+      });
+      dailyActivityInput.addEventListener("change", () => {
+        hasUserChangedScenario = true;
+        updateScenario();
+      });
+      document.querySelector(".optional-inputs").addEventListener("toggle", (event) => {
+        document.querySelector("#maintenance-tile").hidden = !event.currentTarget.open;
+      });
+      for (const input of [
+        heightInput, heightFeetInput, heightInchesInput, weightInput, targetInput,
+        weeksInput, exerciseCaloriesInput, exerciseSessionsInput, dietShareInput,
+      ]) {
+        input.addEventListener("input", () => {
+          hasUserChangedScenario = true;
+          if (input.type === "range") updateRangeFill(input);
+          updateScenario();
+        });
+        input.addEventListener("change", () => {
+          hasUserChangedScenario = true;
+          updateScenario();
+        });
+      }
+
+      updateRangeFill(weeksInput);
+      updateRangeFill(dietShareInput);
+      updateScenario();
+    </script>
+  </body>
+</html>
